@@ -1,0 +1,11 @@
+<div align="center">
+    <h2>Template Reference Variable</h2>
+</div>
+   <!-- Template Reference Variable starting with #.
+      All the input field data store into the this variable.
+-->
+<div>
+    <input #data type="text">
+    <button (click)='fun(data.value)'>click me...</button>
+    <h3>{{str}}</h3>
+</div>
