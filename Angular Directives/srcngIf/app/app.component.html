@@ -1,0 +1,55 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+  <h1>
+     {{ title }}!
+  </h1>
+ </div>
+<!--Only If Statement-->
+<h2 *ngIf="flag">Hello</h2>
+
+<!--Else Statement-->
+ <h2 *ngIf="flag; else elseblock">Inside If</h2>
+
+ <!--  If Else Statement -->
+<div *ngIf="flag; then ifblock; else elseblock"></div>
+
+<ng-template #ifblock>
+   <h2>Inside If</h2>
+</ng-template>
+
+<ng-template #elseblock>
+  <h2>Inside else</h2>
+</ng-template>
+
+
+
+
+
+
+
+
+
+
+ <!-- <h1>Educating for better tomorrow</h1>
+
+<h1 *ngIf="false">Pune</h1>
+
+<h1 *ngIf="flag">Maharashtra</h1>
+
+<h1 *ngIf="flag; else OtherPart">Hello</h1>
+
+<ng-template #OtherPart>
+  <h1>
+    World
+  </h1>
+</ng-template>
+
+<div *ngIf="flag; then ifblock; else elseblock"></div> 
+
+<ng-template #ifblock>
+  <h1>Marvellous If block</h1>
+</ng-template> -->
+
+<!-- <ng-template #elseblock>
+  <h1>Marvellous Else block</h1>
+</ng-template> -->
