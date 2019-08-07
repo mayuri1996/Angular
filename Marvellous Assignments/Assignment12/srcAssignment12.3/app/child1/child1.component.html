@@ -1,0 +1,12 @@
+<h4>Inside Child1 component</h4>
+<label>Enter Number</label>
+<input #num type="number">
+<button (click)="checkNum(num.value)">Check</button>
+<h3>{{result}}</h3>
+
+<div>
+        <label>Enter string</label>
+        <input #val type="text">
+        <button (click)="count(val.value)">Submit</button>
+        <h3>{{result1}}</h3>
+</div>
