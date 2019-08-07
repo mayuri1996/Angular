@@ -1,0 +1,12 @@
+<h3>Inside Demo</h3>
+<div>
+        <label>Enter First Number</label>
+        <input  #num1 type="number">
+</div>
+<div>
+        <label>Enter Second Number</label>
+        <input #num2 type="number">
+</div>
+<button (click)="add(num1.value,num2.value)">Addition</button>&nbsp;
+<button (click)="sub(num1.value,num2.value)">Substraction</button>
+<h3>Result:{{result}}</h3>
