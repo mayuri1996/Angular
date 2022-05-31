@@ -1,0 +1,40 @@
+<div  class="row col-sm-12"
+                [formGroup]="mediaFiles">
+                <div class="col-md-4">
+                    <label for="customFile">Image <small>( PNG/JPEG/JPG)</small></label>
+                    <div class="form-label-group">
+                        <div class="position-relative ">
+                            <input type="file" accept="image/x-png,image/jpeg,image/jpg" id="customFile"
+                                (change)="uploadFile($event)" formControlName="myfile" multiple />
+                            <br>
+                            <small>You can add upto 5 images</small>
+                        </div>
+                    </div>
+                </div>
+
+               
+                <div class="col-md-4">
+                    <label class="btn btn-warning" for="uploadVideo">
+                        Upload Video
+                    </label>
+                    <input class="d-none" id="uploadVideo" accept="video/*" type="file" placeholder="upload"
+                        (change)="uploadVideo($event)">
+                    <p>{{fileNameVideo}}</p>
+                    <p *ngIf="fileErrorVideo" class="text-danger">{{fileErrorVideo}}</p>
+                </div>
+
+                <div class="col-md-4">
+                    <label class="btn btn-warning" for="uploadAudio">
+                        Upload Audio
+                    </label>
+                    <input class="d-none" id="uploadAudio" accept="audio/*" type="file" placeholder="upload"
+                        (change)="uploadAudio($event)">
+                    <p>{{fileNameAudio}}</p>
+                    <p *ngIf="fileErrorAudio" class="text-danger">{{fileErrorAudio}}</p>
+                </div>
+
+                <div class="col-md-12 text-center">
+                    <button mat-raised-button class="mb-2" (click)="submitPSFiles()" color="primary"
+                        [disabled]="images.length==0 && fileVideo=='' && fileAudio=='' " type="submit">Upload</button>
+                </div>
+            </div>
