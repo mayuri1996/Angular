@@ -1,0 +1,62 @@
+/* You can add global styles to this file, and also import other style files */
+
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.btn-outline-primary {
+    color: #443388;
+    border-color: #443388;
+  }
+  
+  .btn-primary{
+  border-color: #443388;
+  background: #443388;
+  color: white;
+  }
+
+  .btn-outline-primary.focus, .btn-outline-primary:focus {
+    box-shadow: 0 0 0 0.2rem rgb(103 58 183 / 27%);
+}
+
+.btn-outline-primary:hover {
+   color: #fff;
+    background-color: #443388 !important;
+    border-color: #443388 !important;
+}
+.btn-outline-primary:hover {
+    color: #fff;
+     background-color: #443388 !important;
+     border-color: #443388 !important;
+ }
+
+ .icon {
+    -webkit-transition: -webkit-transform 0.8s ease-in-out;
+    transition: transform 0.8s ease-in-out;
+  }
+  
+  .icon:hover {
+    color: orange;
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+
+  
+/* width */
+::-webkit-scrollbar {
+  width: 2px;
+  height: 0px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #3f51b5;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #3f51b5;
+}
