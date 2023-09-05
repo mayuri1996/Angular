@@ -1,0 +1,43 @@
+import { Injectable } from "@angular/core";
+import { FormGroup } from "@angular/forms";
+
+@Injectable({
+    providedIn: 'root'
+})
+
+export class JfValidation {
+    public first_name = "[A-Za-z.' ]{1,50}$";
+    public middle_name = "[A-Za-z.']{0,50}$";
+    public last_name = "[A-Za-z.']{1,50}$";
+    public full_name = "^[a-zA-Z.']+[ ]?[a-zA-Z .']+[^ ]$";
+    public email = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,15}$";
+    public gstin = "^([0][1-9]|[1-2][0-9]|[3][0-7])([a-zA-Z]{5}[0-9]{4}[a-zA-Z]{1}[1-9a-zA-Z]{1}[zZ]{1}[0-9a-zA-Z]{1})+$";
+    public ccode = "[+0-9 ]*";
+    public contact = "[0-9]{10}";
+    public pincode = "[0-9]{6}";
+    public password = "(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@$:~_*\?])[a-zA-Z0-9!@$:~_*\?]{8,15}$";
+    public pancard_no = "[A-Z]{5}[0-9]{4}[A-Z]{1}";
+    public tin="^(?![-])(?!.*[-]$)(?!.*[-]{2})[0-9-]+$";
+   public adhaar="^[2-9]{1}[0-9]{3}\\s[0-9]{4}\\s[0-9]{4}$"
+
+}
+
+// custom validator to check that two fields match
+export function MustMatch(controlName: string, matchingControlName: string) {
+    return (formGroup: FormGroup) => {
+        const control = formGroup.controls[controlName];
+        const matchingControl = formGroup.controls[matchingControlName];
+
+        if (matchingControl.errors && !matchingControl.errors.mustMatch) {
+            // return if another validator has already found an error on the matchingControl
+            return;
+        }
+
+        // set error on matchingControl if validation fails
+        if (control.value !== matchingControl.value) {
+            matchingControl.setErrors({ mustMatch: true });
+        } else {
+            matchingControl.setErrors(null);
+        }
+    }
+}
