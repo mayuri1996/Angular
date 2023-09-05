@@ -1,0 +1,55 @@
+<div class="row">
+    <div class="col md-12 text-right">
+      <button mat-raised-button matToolTip="Close" (click)="onNoClick()">X</button>
+    </div>
+  </div><hr>
+
+  <div class="row">
+      <div class="col-sm-3">
+          <strong>Industry Name</strong>
+          <p>{{industryDetails.industryName}}</p>
+      </div>
+      <div class="col-sm-3">
+        <strong>Co-ordinator Name</strong>
+        <p>{{industryDetails.user.firstName}} {{industryDetails.user.middleName}} {{industryDetails.user.lastName}}</p>
+    </div>
+    <div class="col-sm-3">
+        <strong>Co-ordinator Email</strong>
+        <p>{{industryDetails.user.email}}</p>
+    </div>
+    <div class="col-sm-3">
+        <strong>Co-ordinator Contact</strong>
+        <p>{{industryDetails.user.code}}-{{industryDetails.user.mobile}}</p>
+    </div>
+  </div>
+
+  <div class="row col-sm-12">
+    <h5 style="color: orange;">Industry Registered By:</h5>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-3">
+        <strong>Role <span *ngIf="industryDetails.userRole.roleMaster.id!=5 && industryDetails.userRole.roleMaster.id!=2">(Entity Name)</span></strong>
+        <p>{{industryDetails.userRole.roleMaster.title}} 
+          <span *ngIf="industryDetails.userRole.roleMaster.id!=5 && industryDetails.userRole.roleMaster.id!=2">
+            ({{industryDetails.userRole.user.entityName}})
+          </span>
+        </p>
+    </div>
+    <div class="col-sm-3">
+      <strong>Name</strong>
+      <p>
+        <i class="fa fa-check-circle-o" *ngIf="industryDetails.userStatus!='MainUser' && industryDetails.subuserActiveStatus==true" style="color: green;" matTooltip="Active Sub-User"></i>
+        <i class="fa fa-user-times" *ngIf="industryDetails.userStatus!='MainUser' && industryDetails.subuserActiveStatus==false" style="color: red;" matTooltip="Deactivated Sub-User"></i>
+        {{industryDetails.userRole.user.firstName}} {{industryDetails.userRole.user.middleName}} {{industryDetails.userRole.user.lastName}}
+      </p>
+  </div>
+  <div class="col-sm-3">
+      <strong> Email</strong>
+      <p>{{industryDetails.userRole.user.email}}</p>
+  </div>
+  <div class="col-sm-3">
+      <strong> Contact</strong>
+      <p>{{industryDetails.userRole.user.code}}-{{industryDetails.userRole.user.mobile}}</p>
+  </div>
+</div>

@@ -1,0 +1,121 @@
+<h3  class="text-center">Industry Connect</h3>
+<div class="row col-sm-12">
+    <div class="col-sm-6 jf-textbox-container">
+        <mat-form-field>
+            <mat-label>*Select Role</mat-label>
+            <mat-select [(ngModel)]="roleId">
+               <mat-option [value]=-1>All</mat-option>
+                <mat-option [value]=0>Admin</mat-option>
+                <ng-container *ngFor="let role of roleList">
+                <mat-option *ngIf="role.id!=11" [value]="role.id">
+                  {{role.title}}</mat-option>
+              </ng-container>
+            </mat-select>
+          </mat-form-field>
+    </div>
+    <div class="col-sm-2 mt-2">
+        <button mat-raised-button (click)="searchIndustryData()">Search</button>
+    </div>
+    <div class="col-sm-4 mt-2 text-right">
+        <button mat-raised-button color="primary" (click)="openIndustryRegForm(null)">Add Industry</button>&nbsp;
+        <button mat-icon-button matTooltip="Download Table Data" [matMenuTriggerFor]="appMenu" class="pull-right" *ngIf="tableData.length>0">
+          <mat-icon>download</mat-icon>
+        </button>
+        <mat-menu #appMenu="matMenu">
+          <button mat-menu-item (click)="openJustificationPopup('excel')">Excel</button>
+          <button mat-menu-item (click)="openJustificationPopup('pdf')">PDF</button>
+         </mat-menu>
+    </div>
+  </div>
+  <hr>
+  
+
+<!------------display list----------------->
+<div class="row col-sm-12 justify-content-center" >
+    <div style="width: 100%;">
+       
+<div style="padding-bottom: 55px;">
+  <div class="row col-sm-12">
+
+    <mat-form-field appearance="outline" class="col-sm-5">
+      <mat-label>Filter</mat-label>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+      <mat-icon matSuffix class="icon">search</mat-icon>
+    </mat-form-field> 
+
+    <div class="col-sm-5 mt-1">
+      <mat-paginator #paginatorRef [length]="totalElements" [pageSize]="5"
+      (page)="nextPage($event)" [pageSizeOptions]="[5, 10, 50, 100]"></mat-paginator>
+    </div>
+   
+  </div>
+ 
+  <div class="table table-responsive">
+  <table  mat-table [dataSource]="dataSource" matSort style="width: 100%;">
+
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> No. </th>
+      <td mat-cell *matCellDef="let element,let i = index" data-label="id">{{ (paginatorRef.pageIndex * paginatorRef.pageSize) + (i + 1) }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> </th>
+      <td mat-cell *matCellDef="let element,let i = index" data-label="id"> 
+        <mat-icon matTooltip="Jugaadfunda-verified" *ngIf="element.verifiedStatus==true" style="color: green;">verified</mat-icon>
+        <mat-icon matTooltip="Pending-verification" *ngIf="element.verifiedStatus==false" style="color: red;">error</mat-icon>
+      </td>
+    </ng-container>
+
+   
+
+    <ng-container matColumnDef="title">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Industry Name </th>
+      <td mat-cell *matCellDef="let element" data-label="name">
+         {{element.industryName}}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Co-Ordinator Name </th>
+      <td mat-cell *matCellDef="let element" data-label="name">
+         {{element.name}}
+      </td>
+    </ng-container>
+   
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Email Id </th>
+      <td mat-cell *matCellDef="let element" data-label="name">
+         {{element.email}}
+      </td>
+    </ng-container>
+   
+    <ng-container matColumnDef="contact">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Contact </th>
+      <td mat-cell *matCellDef="let element" data-label="name">
+        {{element.contact}}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
+        <td mat-cell *matCellDef="let element" data-label="name">
+
+          <button mat-icon-button [matMenuTriggerFor]="appMenu" aria-label="">
+            <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #appMenu="matMenu">
+          <button mat-menu-item matTooltip="View Details" (click)="openIndustryDetails(element.obj)">View</button>
+          <button mat-menu-item *ngIf="element.profileStatus" matTooltip="View Profile Details" (click)="getProfile(element.userRoleId)">Profile</button>
+          <button mat-menu-item matTooltip="Edit Details" (click)="openIndustryRegForm(element.obj)">Edit</button>
+         </mat-menu> 
+        </td>
+      </ng-container>
+   
+    <tr mat-header-row *matHeaderRowDef="columnDisplay"></tr>
+    <tr mat-row *matRowDef="let row; columns: columnDisplay;"></tr>
+  </table>
+</div>
+</div>
+</div>
+</div>
+
